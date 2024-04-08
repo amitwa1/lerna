@@ -11,8 +11,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
       - name: Checkout code
         uses: actions/checkout@v2
+
+      - name: gitconfig
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
 
       - name: Publish changed packages
         run: npx lerna publish minor --yes
