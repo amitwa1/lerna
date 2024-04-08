@@ -20,5 +20,8 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
 
+      - name: Install dependencies
+        run: npm install
+
       - name: Publish changed packages
         run: npx lerna publish minor --yes
