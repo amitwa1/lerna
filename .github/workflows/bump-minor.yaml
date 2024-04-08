@@ -26,18 +26,7 @@ jobs:
           git config --local user.name "GitHub Action"
 
       - name: Install dependencies
-        run: npm install
-
-      - name: Commit changes
-        uses: EndBug/add-and-commit@v2.1.0
-        with: # More info about the arguments on the action page
-          author_name: Displayed name
-          author_email: Displayed email
-          message: "Message for the commit"
-          pattern: "*.lock" # Pattern that matches the files to commit
-          force: true # Whether to use the --force flag
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This gets generated automatically
+        run: npm install --no-save
 
       - name: Publish changed packages
         run: npx lerna publish minor --yes
