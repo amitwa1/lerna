@@ -1,0 +1,11 @@
+{
+  "name": "lerna-test",
+  "version": "0.0.0",
+  "license": "MIT",
+  "scripts": {},
+  "private": true,
+  "dependencies": {
+    "js-yaml": "^4.1.0",
+    "lerna": "^6.4.1"
+  }
+}
