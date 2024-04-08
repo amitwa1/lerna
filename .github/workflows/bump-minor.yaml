@@ -34,8 +34,7 @@ jobs:
           author_name: Displayed name
           author_email: Displayed email
           message: "Message for the commit"
-          path: local/path/to/built/version
-          pattern: "*.js" # Pattern that matches the files to commit
+          pattern: "*.lock" # Pattern that matches the files to commit
           force: true # Whether to use the --force flag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This gets generated automatically
