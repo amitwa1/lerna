@@ -1,0 +1,12 @@
+{
+  "name": "t5easybusy",
+  "version": "1.0.1-alpha.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "gitHead": "0f859148204c27e1624878331d0372264d1567b1"
+}
