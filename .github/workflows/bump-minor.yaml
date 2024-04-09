@@ -17,10 +17,10 @@ jobs:
         with:
           fetch-depth: 1000
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 14
-          cache: 'npm'
+#      - uses: actions/setup-node@v4
+#        with:
+#          node-version: 14
+#          cache: 'npm'
 
       - name: gitconfig
         run: |
@@ -31,7 +31,7 @@ jobs:
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Install dependencies
-        run: npm install lerna@6.4.1 --no-save
+        run: npm install --no-save
 
       - name: Publish changed packages
         run: npx lerna publish minor --yes ----include-merged-tags
