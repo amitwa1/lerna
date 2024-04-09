@@ -17,10 +17,10 @@ jobs:
         with:
           fetch-depth: 5000
 
-#      - uses: actions/setup-node@v4
-#        with:
-#          node-version: 14
-#          cache: 'npm'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 14
+          cache: 'npm'
 
       - name: gitconfig
         run: |
@@ -51,7 +51,7 @@ jobs:
         run: npm list
 
       - name: Install dependencies
-        run: npm install --no-save
+        run: npm install
 
       - name: Publish changed packages
         run: npx lerna publish minor --yes
