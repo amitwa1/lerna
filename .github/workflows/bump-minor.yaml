@@ -45,7 +45,7 @@ jobs:
             ${{ runner.os }}-
 
       - name: Install dependencies
-        run: npm install --no-save
+        run: npm install lerna@6.4.1 --no-save
 
       - name: Publish changed packages
         run: npx lerna publish minor --yes
