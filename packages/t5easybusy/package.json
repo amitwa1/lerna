@@ -1,6 +1,6 @@
 {
   "name": "t5easybusy",
-  "version": "2.0.1-alphasuffix.0",
+  "version": "2.0.1-alphasuffix.2",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -8,5 +8,5 @@
   },
   "author": "",
   "license": "ISC",
-  "gitHead": "ef247301dc51166141d287aaf044941655ada686"
+  "gitHead": "efe1d8d88cf605afdd2f0ba93cf19074988b8624"
 }
