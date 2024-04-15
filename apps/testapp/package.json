@@ -1,5 +1,5 @@
 {
-  "name": "testapp",
+  "name": "lerna-testapp-rocking",
   "version": "1.0.1-alphaaw.0",
   "description": "",
   "main": "index.js",
@@ -10,5 +10,6 @@
     "t1easybusy": "^1.17.0"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "gitHead": "8f5307c211906c7518c1d8bab708c7292c2ce2f7"
 }
