@@ -1,13 +1,13 @@
 {
   "name": "t2easybusy",
-  "version": "1.20.1-alphaaw.0",
+  "version": "1.21.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "t1easybusy": "^1.17.1-alphaaw.0"
+    "t1easybusy": "^1.18.0"
   },
   "author": "",
   "license": "ISC",
