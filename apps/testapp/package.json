@@ -9,6 +9,7 @@
   "dependencies": {
     "t1easybusy": "^1.19.0"
   },
+  "private": true,
   "author": "",
   "license": "ISC",
   "gitHead": "8f5307c211906c7518c1d8bab708c7292c2ce2f7"
