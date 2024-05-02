@@ -27,6 +27,18 @@ jobs:
           node-version: 14
           cache: 'npm'
 
+      - name: Get app versions
+        run: |
+          versions=()
+          for folder in apps/*; do
+            if [ -f "$folder/package.json" ]; then
+              version=$(jq -r '.version' "$folder/package.json")
+              versions+=("$folder:$version")
+            fi
+          done
+          echo "::set-output name=app_versions::${versions[*]}"
+        id: get_versions
+
       - name: gitconfig
         run: |
           git config --local user.email "action@github.com"
@@ -43,3 +55,25 @@ jobs:
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
 
+      - name: Update package versions if necessary
+        run: |
+          versions="${{ steps.get_versions.outputs.app_versions }}"
+          IFS=' ' read -r -a array <<< "$versions"
+          for element in "${array[@]}"
+          do
+            folder=$(echo "$element" | cut -d':' -f1)
+            version=$(echo "$element" | cut -d':' -f2)
+            if [[ $version == *"-alpha"* ]]; then
+              version=${version%%-alpha*}
+              version=${version%?}0
+              jq ".version = \"${version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
+            fi
+          done
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add apps/*/package.json
+          git commit -m "Auto-update package versions" --all
+          git push
