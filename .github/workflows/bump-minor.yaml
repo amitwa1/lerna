@@ -27,6 +27,18 @@ jobs:
           node-version: 14
           cache: 'npm'
 
+      - name: Get app versions
+        run: |
+          versions=()
+          for folder in apps/*; do
+            if [ -f "$folder/package.json" ]; then
+              version=$(jq -r '.version' "$folder/package.json")
+              versions+=("$folder:$version")
+            fi
+          done
+          echo "::set-output name=app_versions::${versions[*]}"
+        id: get_versions
+
       - name: gitconfig
         run: |
           git config --local user.email "action@github.com"
@@ -35,42 +47,33 @@ jobs:
       - name: Authenticate with private NPM package
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
-#      - name: Cache node modules
-#        id: cache-npm
-#        uses: actions/cache@v3
-#
-#        env:
-#          cache-name: cache-node-modules
-#        with:
-#          # npm cache files are stored in `~/.npm` on Linux/macOS
-#          path: ~/.npm
-#          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-#          restore-keys: |
-#            ${{ runner.os }}-build-${{ env.cache-name }}-
-#            ${{ runner.os }}-build-
-#            ${{ runner.os }}-
-#
-#      - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-#        name: List the state of node modules
-#        continue-on-error: true
-#        run: npm list
-
       - name: Install dependencies
         run: npm install --no-save
-
-      - name: Get current version
-        id: get_version
-        run: echo ::set-output name=version::$(node -p "require('./package.json').version")
-
-      - name: Decrease minor version
-        id: decrease_minor
-        run: echo ::set-output name=version::$(node -p "'$(echo "${{ steps.get_version.outputs.version }}")'.replace(/(\d+\.)(\d+)(\.\d+)/, function(match, p1, p2) { return p1 + (parseInt(p2) - 1) + '.0'; })")
 
       - name: Publish changed packages
         run: npx lerna publish minor --yes
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
 
-      - name: Update package.json
+      - name: Update package versions if necessary
         run: |
-          sed -i "s/\"version\": \"${{ steps.get_version.outputs.version }}\"/\"version\": \"${{ steps.decrease_minor.outputs.version }}\"/" package.json
+          versions="${{ steps.get_versions.outputs.app_versions }}"
+          IFS=' ' read -r -a array <<< "$versions"
+          for element in "${array[@]}"
+          do
+            folder=$(echo "$element" | cut -d':' -f1)
+            version=$(echo "$element" | cut -d':' -f2)
+            if [[ $version == *"-alpha"* ]]; then
+              version=${version%%-alpha*}
+              version=${version%?}0
+              jq ".version = \"${version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
+            fi
+          done
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.email "actions@github.com"
+          git config --global user.name "GitHub Actions"
+          git add apps/*/package.json
+          git commit -m "Auto-update package versions" --all
+          git push
