@@ -1,13 +1,14 @@
 name: Lerna Publish
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-      - 'r/**'
+      - 'r**'
 
 jobs:
   lerna_publish:
+    if: ${{ github.event.pull_request.merged }}
     name: Lerna Publish
     runs-on: ubuntu-latest
 
