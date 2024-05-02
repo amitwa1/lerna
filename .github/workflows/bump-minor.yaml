@@ -72,4 +72,5 @@ jobs:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
 
       - name: Update package.json
-        run: sed -i "s/\"version\": \"${{ steps.get_version.outputs.version }}\"/\"version\": \"${{ steps.decrease_minor.outputs.version }}\"/" package.json
+        run: |
+          sed -i "s/\"version\": \"${{ steps.get_version.outputs.version }}\"/\"version\": \"${{ steps.decrease_minor.outputs.version }}\"/" package.json
