@@ -5,33 +5,60 @@ on:
     branches:
       - fre
 jobs:
+  get_versions:
+    runs-on: ubuntu-latest
 
-    get_versions:
-      runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-      steps:
-        - name: Checkout repository
-          uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
 
-        - name: Set up Node.js
-          uses: actions/setup-node@v2
-          with:
-            node-version: '14'
+      - name: Install dependencies
+        run: npm install
 
-        - name: Install dependencies
-          run: npm install
+      - name: Get app versions
+        id: get_versions
+        run: |
+          versions=()
+          for folder in apps/*; do
+            if [ -f "$folder/package.json" ]; then
+              version=$(jq -r '.version' "$folder/package.json")
+              versions+=("$folder:$version")
+            fi
+          done
+          echo "::set-output name=app_versions::${versions[@]}"
 
-        - name: Get app versions
-          id: get_versions
-          run: |
-            versions=()
-            for folder in apps/*; do
-              if [ -f "$folder/package.json" ]; then
-                version=$(jq -r '.version' "$folder/package.json")
-                versions+=("$folder:$version")
-              fi
-            done
-            echo "::set-output name=app_versions::${versions[@]}"
+      - name: Save app versions to file
+        run: echo "${{ steps.get_versions.outputs.app_versions }}" > app_versions.txt
 
-        - name: Save app versions to file
-          run: echo "${{ steps.get_versions.outputs.app_versions }}" > app_versions.txt
+      - name: Display app versions
+        run: cat app_versions.txt
+
+  update_version:
+    needs: get_versions
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Update package versions
+        run: |
+          while IFS= read -r line; do
+            folder=$(echo "$line" | cut -d':' -f1)
+            version=$(echo "$line" | cut -d':' -f2)
+            if [[ $version == *"alpha"* ]]; then
+              minor_version=$(echo $version | sed -E 's/^.*([0-9]+\.[0-9]+).*$/\1/')
+              new_version="${minor_version}.0"
+              jq ".version = \"${new_version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
+            fi
+          done < app_versions.txt
