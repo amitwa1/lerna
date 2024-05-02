@@ -3,7 +3,7 @@ name: Lerna Publish
 on:
   push:
     branches:
-      - main
+      - 'main/**'
 
 jobs:
   lerna_publish:
