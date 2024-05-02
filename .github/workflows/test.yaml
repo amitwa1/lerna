@@ -47,13 +47,18 @@ jobs:
 
       - name: Update package versions
         run: |
+          echo "App Versions: ${{ needs.get_versions.outputs.app_versions }}"
           while IFS= read -r line; do
+            echo "Line: $line"
             folder=$(echo "$line" | cut -d':' -f1)
             version=$(echo "$line" | cut -d':' -f2)
+            echo "Folder: $folder, Version: $version"
             if [[ $version == *"alpha"* ]]; then
               minor_version=$(echo $version | sed -E 's/^.*([0-9]+\.[0-9]+).*$/\1/')
               new_version="${minor_version}.0"
+              echo "Updating $folder/package.json to version $new_version"
               jq ".version = \"${new_version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
+              cat "$folder/package.json"
             fi
           done <<< "${{ needs.get_versions.outputs.app_versions }}"
 
