@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Get app versions and update if necessary
+      - name: Get app versions
         run: |
           versions=()
           for folder in apps/*; do
@@ -30,8 +30,14 @@ jobs:
               versions+=("$folder:$version")
             fi
           done
-          
-          for element in "${versions[@]}"
+          echo "::set-output name=app_versions::${versions[*]}"
+        id: get_versions
+
+      - name: Update package versions if necessary
+        run: |
+          versions="${{ steps.get_versions.outputs.app_versions }}"
+          IFS=' ' read -r -a array <<< "$versions"
+          for element in "${array[@]}"
           do
             folder=$(echo "$element" | cut -d':' -f1)
             version=$(echo "$element" | cut -d':' -f2)
