@@ -39,13 +39,11 @@ jobs:
           IFS=' ' read -r -a array <<< "$versions"
           for element in "${array[@]}"
           do
-            folder=$(echo "$element" | cut -d':' -f1)
-            version=$(echo "$element" | cut -d':' -f2)
-            if [[ $version == *"alpha"* ]]; then
-              minor_version=$(echo $version | sed -E 's/^.*([0-9]+\.[0-9]+).*$/\1/')
-              new_version="${minor_version}.0"
-              jq ".version = \"${new_version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
-            fi
+          folder=$(echo "$element" | cut -d':' -f1)
+          version=$(echo "$element" | cut -d':' -f2)
+          if [[ $version == *"alpha"* ]]; then
+           jq ".version = \"${version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
+          fi
           done
 
       - name: Commit and push changes
