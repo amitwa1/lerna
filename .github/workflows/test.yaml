@@ -56,3 +56,10 @@ jobs:
               jq ".version = \"${new_version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
             fi
           done <<< "${{ needs.get_versions.outputs.app_versions }}"
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git commit -m "Auto-update package versions" --all
+          git push
