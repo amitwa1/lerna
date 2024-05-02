@@ -1,13 +1,13 @@
 {
   "name": "lerna-testapp-rocking",
-  "version": "1.9.0",
+  "version": "1.9.1-alphasuffix.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "t1easybusy": "^1.27.0"
+    "t1easybusy": "^1.27.1-alphasuffix.0"
   },
   "private": true,
   "author": "",
