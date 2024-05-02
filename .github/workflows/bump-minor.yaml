@@ -58,7 +58,18 @@ jobs:
       - name: Install dependencies
         run: npm install --no-save
 
+      - name: Get current version
+        id: get_version
+        run: echo ::set-output name=version::$(node -p "require('./package.json').version")
+
+      - name: Decrease minor version
+        id: decrease_minor
+        run: echo ::set-output name=version::$(node -p "'$(echo "${{ steps.get_version.outputs.version }}")'.replace(/(\d+\.)(\d+)(\.\d+)/, function(match, p1, p2) { return p1 + (parseInt(p2) - 1) + '.0'; })")
+
       - name: Publish changed packages
         run: npx lerna publish minor --yes
         env:
           PAT_TOKEN: ${{ secrets.PAT_TOKEN }}
+
+      - name: Update package.json
+        run: sed -i "s/\"version\": \"${{ steps.get_version.outputs.version }}\"/\"version\": \"${{ steps.decrease_minor.outputs.version }}\"/" package.json

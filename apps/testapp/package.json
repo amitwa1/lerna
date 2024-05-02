@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "t1easybusy": "^1.24.1-alphasuffix.0"
+    "t1easybusy": "^1.24.0"
   },
   "private": true,
   "author": "",
