@@ -32,12 +32,6 @@ jobs:
           done
           echo "::set-output name=app_versions::${versions[@]}"
 
-      - name: Save app versions to file
-        run: echo "${{ steps.get_versions.outputs.app_versions }}" > app_versions.txt
-
-      - name: Display app versions
-        run: cat app_versions.txt
-
   update_version:
     needs: get_versions
     runs-on: ubuntu-latest
@@ -61,4 +55,4 @@ jobs:
               new_version="${minor_version}.0"
               jq ".version = \"${new_version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
             fi
-          done < app_versions.txt
+          done <<< "${{ needs.get_versions.outputs.app_versions }}"
