@@ -43,6 +43,7 @@ jobs:
             version=$(echo "$element" | cut -d':' -f2)
             if [[ $version == *"-alpha"* ]]; then
               version=${version%%-alpha*}
+              version=${version%?}0
               jq ".version = \"${version}\"" "$folder/package.json" > "$folder/package.tmp" && mv "$folder/package.tmp" "$folder/package.json"
             fi
           done
