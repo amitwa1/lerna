@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "publish-alpha": "node -e \"const { execSync } = require('child_process'); const username = execSync('npm whoami').toString().trim(); execSync('npx lerna publish prerelease --preid ' + username + '-suffix --include-merged-tags', { stdio: 'inherit' });\""
+    "publish-alpha": "node -e \"const { execSync } = require('child_process'); const username = execSync('npm whoami', { encoding: 'utf8' }).trim(); execSync('npx lerna publish prerelease --preid alpha' + username + ' --include-merged-tags', { stdio: 'inherit' });\""
   },
   "private": true,
   "dependencies": {
