@@ -2,10 +2,13 @@
   "name": "lerna-test",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "publish-alpha": "node -e \"const { execSync } = require('child_process'); const username = execSync('npm whoami').toString().trim(); execSync('npx lerna publish prerelease --preid ' + username + '-suffix --include-merged-tags', { stdio: 'inherit' });\""
+  },
   "private": true,
   "dependencies": {
     "js-yaml": "^4.1.0",
     "lerna": "^6.4.1"
   }
+
 }
