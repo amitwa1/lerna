@@ -3,12 +3,13 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "publish-alpha": "node -e \"const { execSync } = require('child_process'); const os = require('os'); const username = os.userInfo().username.replace(/[^a-zA-Z0-9]/g, ''); execSync('npx lerna publish prerelease --preid alpha' + username + ' --include-merged-tags', { stdio: 'inherit' });\""
+    "alpha": "node -e \"const { execSync } = require('child_process'); const os = require('os'); const username = os.userInfo().username.replace(/[^a-zA-Z0-9]/g, ''); execSync('npx lerna publish prerelease --preid alpha' + username + ' --include-merged-tags', { stdio: 'inherit' });\""
   },
   "private": true,
   "dependencies": {
     "js-yaml": "^4.1.0",
-    "lerna": "^6.4.1"
+    "lerna": "^6.4.1",
+    "t1easybusy": "^1.35.0"
   }
 
 }
