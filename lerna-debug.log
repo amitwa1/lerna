@@ -1,8 +1,15 @@
-57 warn complete Waiting for 2 child processes to exit. CTRL-C to exit immediately.
-58 error Error: Command failed with exit code 128: git tag lerna-testapp-rocking@3.11.1-alpha.0 -m lerna-testapp-rocking@3.11.1-alpha.0
-58 error fatal: tag 'lerna-testapp-rocking@3.11.1-alpha.0' already exists
-58 error     at makeError (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/lib/error.js:59:11)
-58 error     at handlePromise (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/index.js:114:26)
-58 error     at processTicksAndRejections (internal/process/task_queues.js:95:5)
-58 error     at async Promise.all (index 0)
-58 error     at async Promise.all (index 0)
+48 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
+48 error npm ERR! code ETARGET
+48 error npm ERR! notarget No matching version found for t1easybusy@^1.35.1-alphaamitwagner.0.
+48 error npm ERR! notarget In most cases you or one of your dependencies are requesting
+48 error npm ERR! notarget a package version that doesn't exist.
+48 error npm ERR! notarget
+48 error npm ERR! notarget It was specified as a dependency of 'lerna'
+48 error npm ERR! notarget
+48 error
+48 error npm ERR! A complete log of this run can be found in:
+48 error npm ERR!     /Users/amit.wagner/.npm/_logs/2024-05-20T14_53_02_522Z-debug.log
+48 error     at makeError (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/lib/error.js:59:11)
+48 error     at handlePromise (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/index.js:114:26)
+48 error     at processTicksAndRejections (internal/process/task_queues.js:95:5)
+48 error     at async Promise.all (index 0)
