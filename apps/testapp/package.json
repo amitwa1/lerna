@@ -1,13 +1,13 @@
 {
   "name": "lerna-testapp-rockingaa",
-  "version": "3.16.0",
+  "version": "3.16.1-alphaamitwagner.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "t1easybusy": "^1.39.0"
+    "t1easybusy": "^1.39.1-alphaamitwagner.0"
   },
   "private": true,
   "author": "",
