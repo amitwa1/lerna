@@ -1,15 +1,15 @@
-55 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
-55 error npm ERR! code ETARGET
-55 error npm ERR! notarget No matching version found for t1easybusy@^1.37.0.
-55 error npm ERR! notarget In most cases you or one of your dependencies are requesting
-55 error npm ERR! notarget a package version that doesn't exist.
-55 error npm ERR! notarget
-55 error npm ERR! notarget It was specified as a dependency of 'lerna'
-55 error npm ERR! notarget
-55 error
-55 error npm ERR! A complete log of this run can be found in:
-55 error npm ERR!     /Users/amit.wagner/.npm/_logs/2024-05-21T08_48_04_584Z-debug.log
-55 error     at makeError (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/lib/error.js:59:11)
-55 error     at handlePromise (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/index.js:114:26)
-55 error     at processTicksAndRejections (internal/process/task_queues.js:95:5)
-55 error     at async Promise.all (index 0)
+54 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
+54 error npm ERR! code ETARGET
+54 error npm ERR! notarget No matching version found for t1easybusy@^1.37.0.
+54 error npm ERR! notarget In most cases you or one of your dependencies are requesting
+54 error npm ERR! notarget a package version that doesn't exist.
+54 error npm ERR! notarget
+54 error npm ERR! notarget It was specified as a dependency of 'lerna'
+54 error npm ERR! notarget
+54 error
+54 error npm ERR! A complete log of this run can be found in:
+54 error npm ERR!     /Users/amit.wagner/.npm/_logs/2024-05-21T08_48_40_817Z-debug.log
+54 error     at makeError (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/lib/error.js:59:11)
+54 error     at handlePromise (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/index.js:114:26)
+54 error     at processTicksAndRejections (internal/process/task_queues.js:95:5)
+54 error     at async Promise.all (index 0)
