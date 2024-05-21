@@ -1,6 +1,6 @@
 {
   "name": "lerna-test",
-  "version": "0.0.1-alphaamitwagner.3",
+  "version": "0.0.1-alphaamitwagner.4",
   "license": "MIT",
   "scripts": {
     "alpha": "node -e \"const { execSync } = require('child_process'); const os = require('os'); const username = os.userInfo().username.replace(/[^a-zA-Z0-9]/g, ''); execSync('npx lerna publish prerelease --preid alpha' + username + ' --include-merged-tags', { stdio: 'inherit' });\""
