@@ -1,13 +1,13 @@
 {
   "name": "t2easybusy",
-  "version": "1.42.1-alphaamitwagner.0",
+  "version": "1.43.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "t1easybusy": "^1.39.1-alphaamitwagner.0"
+    "t1easybusy": "^1.40.0"
   },
   "author": "",
   "license": "ISC",
