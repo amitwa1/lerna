@@ -1,15 +1,15 @@
-49 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
-49 error npm ERR! code ETARGET
-49 error npm ERR! notarget No matching version found for t1easybusy@^1.35.1-alphaamitwagner.2.
-49 error npm ERR! notarget In most cases you or one of your dependencies are requesting
-49 error npm ERR! notarget a package version that doesn't exist.
-49 error npm ERR! notarget
-49 error npm ERR! notarget It was specified as a dependency of 'lerna'
-49 error npm ERR! notarget
-49 error
-49 error npm ERR! A complete log of this run can be found in:
-49 error npm ERR!     /Users/amit.wagner/.npm/_logs/2024-05-20T14_53_56_013Z-debug.log
-49 error     at makeError (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/lib/error.js:59:11)
-49 error     at handlePromise (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/index.js:114:26)
-49 error     at processTicksAndRejections (internal/process/task_queues.js:95:5)
-49 error     at async Promise.all (index 0)
+41 error Error: Command failed with exit code 1: npm install --package-lock-only --ignore-scripts
+41 error npm ERR! code ETARGET
+41 error npm ERR! notarget No matching version found for t1easybusy@1.35.1-alphaamitwagner.2.
+41 error npm ERR! notarget In most cases you or one of your dependencies are requesting
+41 error npm ERR! notarget a package version that doesn't exist.
+41 error npm ERR! notarget
+41 error npm ERR! notarget It was specified as a dependency of 'lerna'
+41 error npm ERR! notarget
+41 error
+41 error npm ERR! A complete log of this run can be found in:
+41 error npm ERR!     /Users/amit.wagner/.npm/_logs/2024-05-21T07_58_18_187Z-debug.log
+41 error     at makeError (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/lib/error.js:59:11)
+41 error     at handlePromise (/Users/amit.wagner/WebstormProjects/lerna/node_modules/execa/index.js:114:26)
+41 error     at processTicksAndRejections (internal/process/task_queues.js:95:5)
+41 error     at async Promise.all (index 0)
