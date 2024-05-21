@@ -1,13 +1,13 @@
 {
   "name": "lerna-testapp-rockingaa",
-  "version": "3.13.0",
+  "version": "3.14.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "t1easybusy": "^1.35.0"
+    "t1easybusy": "^1.37.0"
   },
   "private": true,
   "author": "",
